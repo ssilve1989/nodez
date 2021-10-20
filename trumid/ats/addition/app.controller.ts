@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from "@nestjs/common";
+import { GrpcMethod } from "@nestjs/microservices";
 import { AppService } from "./app.service";
 
 @Controller()
@@ -8,6 +9,11 @@ class AppController {
   @Post()
   add(@Body() { x, y }) {
     return this.service.add(x, y);
+  }
+
+  @GrpcMethod("AdditionService", "Add")
+  addRpc({ x, y }) {
+    return { result: this.service.add(x, y) }
   }
 }
 

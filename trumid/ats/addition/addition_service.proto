@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package trumid.ats.addition;
+
+message AddRequest {
+  required int32 x = 1;
+  required int32 y = 2;
+}
+
+message AddResponse {
+  required int32 result = 1;
+}
+
+service AdditionService {
+  // Adds some numbers mannnnnn
+  rpc Add(AddRequest) returns (AddResponse);
+}

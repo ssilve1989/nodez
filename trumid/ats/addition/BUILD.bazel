@@ -1,5 +1,5 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
-load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "copy_to_bin")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -11,16 +11,24 @@ ts_project(
     deps = [
         "//trumid/ats/common:math",
         "@npm//@nestjs/common",
+        "@npm//@nestjs/microservices",
         "@npm//@nestjs/core",
     ],
+)
+
+copy_to_bin(
+  name = "proto",
+  srcs = ["addition_service.proto"]
 )
 
 nodejs_binary(
     name = "addition",
     data = [
         ":lib",
+        ":proto",
     ],
     entry_point = ":main.ts",
     # Why can i not replace this with link_workspace_root ?
     args = ["--bazel_patch_module_resolver"], 
+    # link_workspace_root = True,
 )
