@@ -1,0 +1,11 @@
+load("@npm//@bazel/typescript:index.bzl", "ts_project")
+
+ts_project(
+  name = "math",
+  srcs = [
+    "math.ts"
+  ],
+  tsconfig = "//:tsconfig-library",
+  declaration = True,
+  source_map = True
+)

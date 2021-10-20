@@ -1,0 +1,19 @@
+# Add rules here to build your software
+# See https://docs.bazel.build/versions/main/build-ref.html#BUILD_files
+load("@npm//@bazel/typescript:index.bzl", "ts_config")
+
+exports_files([
+  "tsconfig.json",
+  "package.json",
+  "yarn.lock",
+  ".nvmrc"
+])
+
+ts_config(
+  name = "tsconfig-library",
+  src = ":tsconfig.library.json",
+  deps = [
+    "//:tsconfig.json"
+  ],
+  visibility = ["//visibility:public"],
+)
