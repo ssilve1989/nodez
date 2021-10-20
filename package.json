@@ -14,10 +14,14 @@
     "@grpc/proto-loader": "^0.6.6",
     "@nestjs/common": "^8.1.1",
     "@nestjs/core": "^8.1.1",
-    "@nestjs/platform-express": "^8.1.1",
     "@nestjs/microservices": "^8.1.1",
+    "@nestjs/platform-express": "^8.1.1",
+    "google-protobuf": "3.18.0",
+    "grpc-tools": "1.11.2",
+    "grpc-web": "1.2.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.4.0"
+    "rxjs": "^7.4.0",
+    "ts-protoc-gen": "0.15.0"
   },
   "scripts": {
     "bazel": "bazel",

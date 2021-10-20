@@ -1,7 +1,23 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "copy_to_bin")
+load("@rules_proto_grpc//js:defs.bzl", "js_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
 
 package(default_visibility = ["//visibility:public"])
+
+# TODO: Location of the proto is here just for simplicity atm, but we can 
+# show how it would work in its own directory as well
+proto_library(
+  name = "proto",
+  srcs = ["addition_service.proto"],
+)
+
+js_proto_library(
+  name = "proto_js",
+  protos = [":proto"],
+  package_name = "@nodez/addition",
+  # output_mode = "NO_PREFIX"
+)
 
 ts_project(
     name = "lib",
@@ -17,7 +33,7 @@ ts_project(
 )
 
 copy_to_bin(
-  name = "proto",
+  name = "proto_bin",
   srcs = ["addition_service.proto"]
 )
 
@@ -25,8 +41,7 @@ nodejs_binary(
     name = "addition",
     data = [
         ":lib",
-        ":proto",
-        "//trumid/math:pkg"
+        ":proto_bin",
     ],
     entry_point = ":main.ts",
     # Why can i not replace this with link_workspace_root ?
