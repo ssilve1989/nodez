@@ -1,9 +1,12 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
+package(default_visibility = ["//visibility:public"])
+
 ts_project(
     name = "lib",
     srcs = glob(["*.ts"]),
+    source_map = True,
     tsconfig = "//:tsconfig.json",
     deps = [
         "//trumid/ats/common:math",
@@ -18,5 +21,6 @@ nodejs_binary(
         ":lib",
     ],
     entry_point = ":main.ts",
-    link_workspace_root = True,
+    # Why can i not replace this with link_workspace_root ?
+    args = ["--bazel_patch_module_resolver"], 
 )

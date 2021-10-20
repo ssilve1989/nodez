@@ -21,6 +21,7 @@
   "scripts": {
     "bazel": "bazel",
     "build": "bazel build //...",
-    "test": "bazel test //..."
+    "test": "bazel test //...",
+    "start:addition": "bazel run //trumid/ats/addition"
   }
 }
