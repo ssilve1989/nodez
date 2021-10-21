@@ -1,0 +1,24 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "copy_to_bin")
+load("@rules_proto_grpc//js:defs.bzl", "js_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+package(default_visibility = ["//visibility:public"])
+
+proto_library(
+  name = "proto",
+  srcs = ["addition_service.proto"],
+)
+
+# TODO: Not working yet
+js_proto_library(
+  name = "pkg",
+  protos = [":proto"],
+  package_name = "@nodez/addition-pb",
+  # this doesn't work?
+  # output_mode = "NO_PREFIX"
+)
+
+copy_to_bin(
+  name = "proto_bin",
+  srcs = ["addition_service.proto"]
+)

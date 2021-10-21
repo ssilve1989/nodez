@@ -41,6 +41,14 @@
         "./trumid/*",
         "dist/bin/trumid/*",
         "bazel-out/darwin-fastbuild/bin/trumid/*",
+      ],
+      // TODO: Organize directory structure better so we dont need an entry for each kind of package type
+      // Also the path is kind of garbage because of the current protogen plugin we are using which generates the
+      // nested directory
+      "@nodez/addition-pb/*": [
+        "./trumid/ats/addition/proto/*",
+        "dist/bin/trumid/ats/addition/proto/*",
+        "bazel-out/darwin-fastbuild/bin/trumid/ats/addition/proto/*"
       ]
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     "rootDirs": [

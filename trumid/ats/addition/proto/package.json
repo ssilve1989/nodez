@@ -1,0 +1,5 @@
+{
+  "name": "@nodez/addition-pb",
+  "main": "trumid/ats/addition/proto/addition_service_pb",
+  "typings": "addition_service_pb.d.ts"
+}
