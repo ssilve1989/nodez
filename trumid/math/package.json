@@ -1,0 +1,5 @@
+{
+  "name": "@nodez/math",
+  "main": "./index.js",
+  "module": "./index.ts"
+}

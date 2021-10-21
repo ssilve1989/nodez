@@ -1,14 +1,26 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
+load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
 package(default_visibility = ["//visibility:public"])
 
 ts_project(
   name = "math",
   srcs = [
-    "math.ts"
+    "index.ts"
   ],
   tsconfig = "//:tsconfig-library",
   declaration = True,
   declaration_map = True,
   source_map = True,
+)
+
+js_library(
+  name = "pkg",
+  package_name = "@nodez/math",
+  srcs = [
+    "package.json"
+  ],
+  deps = [
+    ":math"
+  ]
 )

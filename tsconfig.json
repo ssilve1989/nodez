@@ -36,6 +36,11 @@
         "./*",
         "dist/bin/*",
         "bazel-out/darwin-fastbuild/bin/*",
+      ],
+      "@nodez/*": [
+        "./trumid/*",
+        "dist/bin/trumid/*",
+        "bazel-out/darwin-fastbuild/bin/trumid/*",
       ]
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     "rootDirs": [

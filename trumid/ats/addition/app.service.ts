@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { add } from 'nodez/trumid/ats/common/math';
+import { add } from '@nodez/math';
 
 @Injectable()
 class AppService {
