@@ -1,0 +1,22 @@
+load("//tools:defs.bzl", "protobufjs_library")
+load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
+
+protobufjs_library(
+  name = "trumid-protobuf-client__proto",
+  out_name = "protos",
+  protos = [
+    "//trumid/ats/addition/proto"
+  ]
+)
+
+js_library(
+  name = "trumid-protobuf-client",
+  package_name = "@nodez/protobuf-client",
+  srcs = [
+    "package.json"
+  ],
+  visibility = ["//visibility:public"],
+  deps = [
+    ":trumid-protobuf-client__proto"
+  ]
+)
