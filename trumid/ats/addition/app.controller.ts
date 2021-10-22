@@ -1,18 +1,14 @@
 import { Body, Controller, Post } from "@nestjs/common";
-import { GrpcMethod } from "@nestjs/microservices";
 import { AppService } from "./app.service";
+import { AdditionServiceController, AdditionServiceControllerMethods, AddRequest, AddResponse } from './proto/generated/trumid/ats/addition/proto/addition_service';
 
+@AdditionServiceControllerMethods()
 @Controller()
-class AppController {
+class AppController implements AdditionServiceController {
   constructor(private readonly service: AppService) {}
 
   @Post()
-  add(@Body() { x, y }) {
-    return this.service.add(x, y);
-  }
-
-  @GrpcMethod("AdditionService", "Add")
-  addRpc({ x, y }) {
+  add(@Body() { x, y }: AddRequest): AddResponse {
     return { result: this.service.add(x, y) }
   }
 }

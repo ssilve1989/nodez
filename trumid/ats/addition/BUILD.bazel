@@ -10,7 +10,8 @@ ts_project(
     tsconfig = "//:tsconfig.json",
     deps = [
         "//trumid/math:pkg",
-        "//trumid/ats/addition/proto:pkg",
+        "//trumid/ats/addition/proto:generated",
+        # "//trumid/ats/addition/proto:pkg",
         "@npm//@nestjs/common",
         "@npm//@nestjs/microservices",
         "@npm//@nestjs/core",

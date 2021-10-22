@@ -1,6 +1,6 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "copy_to_bin")
-load("@rules_proto_grpc//js:defs.bzl", "js_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
+load("//tools:ts_proto_nest_compile.bzl", "ts_proto_nest_compile")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -9,13 +9,11 @@ proto_library(
   srcs = ["addition_service.proto"],
 )
 
-# TODO: Not working yet
-js_proto_library(
-  name = "pkg",
-  protos = [":proto"],
-  package_name = "@nodez/addition-pb",
-  # this doesn't work?
-  # output_mode = "NO_PREFIX"
+ts_proto_nest_compile(
+  name = "generated", # used as the first directory before the package paths generated, pretty ugly but bearable
+  protos = [
+    ":proto"
+  ]
 )
 
 copy_to_bin(

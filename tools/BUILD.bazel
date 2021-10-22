@@ -1,1 +1,22 @@
 # Currently there are no targets in this Bazel package
+
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+
+proto_plugin(
+  name = "ts_proto_nest_plugin",
+  exclusions = [
+    "google/protobuf"
+  ],
+  options = [
+    "esModuleInterop=true",
+    "env=node",
+    "nestJs=true",
+    "addGrpcMetadata=true",
+    "emitImportedFiles=false"
+  ],
+  outputs = [
+    "{protopath}.ts", 
+  ],
+  tool = "@npm//ts-proto/bin:protoc-gen-ts_proto",
+  visibility = ["//visibility:public"],
+)
